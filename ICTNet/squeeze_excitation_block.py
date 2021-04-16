@@ -2,6 +2,7 @@ import numpy as np
 from tensorflow import keras
 from keras import layers
 from keras import models
+import tensorflow as tf
 
 # Tenserflow
 # def squeeze_excitation_layer(inputs, output_dimension, ratio, layer_name):
@@ -19,12 +20,11 @@ from keras import models
 
 # Keras
 def squeeze_excitation_layer(inputs, output_dimension, ratio):
-    squeeze = np.mean(inputs, axis=[1, 2])
+    squeeze = tf.reduce_mean(inputs, axis=[1, 2])
 
     units = output_dimension/ratio    
     excitation = layers.Dense(units, activation='relu')(squeeze)
     excitation = layers.Dense(output_dimension, activation='sigmoid')(excitation)
-
-    excitation = excitation.reshape(-1, 1, 1, output_dimension)
+    excitation = tf.reshape(excitation, [-1, 1, 1, output_dimension])
     return inputs * excitation
 

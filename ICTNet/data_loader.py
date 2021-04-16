@@ -10,6 +10,8 @@ print(tf.__version__)
 
 batch_size=5
 
+# Put batch_size=725 to iterate by city
+
 data_path = './AerialImageDataset'
 labels_folder = 'gt'
 images_folder = 'images'

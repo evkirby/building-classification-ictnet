@@ -121,9 +121,8 @@ def build_model(preset_model='FC-DenseNet103', num_classes=2, n_filters_first_co
     model = keras.models.Model(inputs, probas)
     model.compile(loss=keras.losses.categorical_crossentropy,
                   optimizer=keras.optimizers.RMSprop(learning_rate=0.0001, decay=0.995),
-                  metrics=['loss'])
+                  metrics=['acc'])
     model.summary()
-# --------------- #
 
-# A utiliser pour le fit(x, y, callbacks=[keras.callbacks.ModelCheckpoint(filepath, ...)
-build_model()
+    return model
+# --------------- #
